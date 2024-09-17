@@ -2,16 +2,16 @@ import math
 
 class CartPole:
   def __init__(self, x, xdot, theta, thetadot, lenght, x_weight, weight, gravity=-9.81):
-    self.x = x #cart position
-    self.xdot = xdot # cart veocity
-    self.theta = theta # pendulum's angle
-    self.thetadot = thetadot # pendulum's angular velocity
-    self.lenght = lenght # distance of pendulum to the cart
-    self.x_weight = x_weight # weight of pendulum
-    self.weight = weight # weight of cart idk why this exist...
+    self.x = x
+    self.xdot = xdot
+    self.theta = theta
+    self.thetadot = thetadot
+    self.lenght = lenght
+    self.x_weight = x_weight
+    self.weight = weight
     self.gravity = gravity
 
-  def sim_step(self, force, dt=0.05, drag=1.02):
+  def sim_step(self, force, dt=0.05, drag=1.2):
     # calculate accelerations
     x_acc = force / (self.x_weight + self.weight)
     theta_acc = (self.gravity * math.sin(self.theta) - 
@@ -22,8 +22,6 @@ class CartPole:
     self.xdot += x_acc * dt
     f = self.xdot * dt
     temp = True
-
-    # clamping the cart to now move far
     if self.x >= -1.5:
         if f < 0:
             self.x += f
@@ -37,7 +35,7 @@ class CartPole:
     self.thetadot += theta_acc * dt
     self.theta += self.thetadot * dt
 
-    # normalize theta to [-pi, pi]                                      this part is to add drag
+    # normalize theta to [-pi, pi]
     self.theta = math.atan2(math.sin(self.theta), math.cos(self.theta))/drag
 
 # import matplotlib
@@ -60,7 +58,7 @@ class PlotCartPole:
 
     def simulate(self, i):
         self.ax.cla()  # clear the axis
-        self.cart_pole.sim_step(random.randrange(-100,100))  # simulate one step with random force
+        self.cart_pole.sim_step(int(random.randrange(-100,100)/10))  # simulate one step
         x_cart = self.cart_pole.x
         y_cart = 0
         x_pendulum = x_cart + self.cart_pole.lenght * np.sin(self.cart_pole.theta)
@@ -76,7 +74,7 @@ class PlotCartPole:
         ani = animation.FuncAnimation(self.fig, self.simulate, frames=200, init_func=self.init, blit=True, interval=50)
         
         plt.show()
-cart_pole = CartPole(x=0, xdot=0, theta=math.pi/4, thetadot=0, lenght=1, x_weight=1, weight=0.1)
+cart_pole = CartPole(x=0, xdot=0, theta=math.pi/4, thetadot=0, lenght=1, x_weight=5, weight=0.1)
 plot_cart_pole = PlotCartPole(cart_pole)
 plot_cart_pole.animate()
 
