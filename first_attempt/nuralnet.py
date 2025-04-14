@@ -15,7 +15,7 @@ class EDGE:
         """takes a value, apply to the parent node, the multiply that output to the weigth"""
         return value * self.weigth
     def dif(self) -> float:
-        return self.weight
+        return self.weigth
 
 class Layer:
     def __init__(self,num_of_nodes:int):
