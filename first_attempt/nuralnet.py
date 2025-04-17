@@ -23,7 +23,7 @@ class Layer:
     def forward(self, values:list[float]) -> list[float]:
         """"""
         prev_layer_num = len(values)//len(self.nodes)
-        if len(values)%len(self.nodes) == 0:
+        if len(values)%len(self.nodes):
             raise ValueError("incompatible value has been feed to the layer")
         return [nuron(sum(value[i:i+prev_layer_num])) for i,nuron in enumerate(self.nodes)]
     
