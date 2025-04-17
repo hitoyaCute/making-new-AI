@@ -1,8 +1,10 @@
 import math as m
 from math import e,pi
+from math import tanh as mtanh
+from typing import Protocol
 
 
-class ACTIVATION:
+class ACTIVATION(Protocol):
     """This is the perent class that contains call and derivetive call"""
     @staticmethod
     def __call__(x:float) -> float:
@@ -14,9 +16,9 @@ class ACTIVATION:
 
 
 
-class relu(ACTIVATION):
+class relu:
     @staticmethod
-    def __call__(x):
+    def __call__(x:float) -> float:
         """formula
         relu = max(0, x)
         """
@@ -25,9 +27,9 @@ class relu(ACTIVATION):
     def dif(x):
         return 1
 
-class tanh(ACTIVATION):
+class tanh:
     @staticmethod
-    def __call__(x):
+    def __call__(x:float) -> float:
         """formula
                 e^x - e^(-x)
         tanh = --------------
@@ -35,9 +37,9 @@ class tanh(ACTIVATION):
         """
         return (m.pow(e,x) - m.pow(e,-x))/(m.pow(e,x)+m.pow(e,-x))
     @staticmethod
-    def dif(x):
+    def dif(x:float) -> float:
         """formula 
         tanh' = 1 - tanh(x)^2
         """
-        return 1 - (tanh(x) ^ 2)
+        return 1 - (mtanh(x) ** 2)
 

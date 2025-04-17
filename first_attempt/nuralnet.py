@@ -33,5 +33,5 @@ class Layer:
 
 
 class Construct:
-    def __init__(self, layers:list[Layer | ACTIVATION]):
+    def __init__(self, input_count:int ,*layers:Layer | ACTIVATION):
         self.layers = layers
