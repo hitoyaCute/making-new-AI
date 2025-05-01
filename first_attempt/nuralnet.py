@@ -9,7 +9,6 @@ class NEURON:
     def dif(self, value: float) -> float:
         return 1 + self.bias
 class EDGE:
-    def __init__(self, weigth: float):
         self.weigth = weigth
     def __call__(self, value:float) -> float:
         """takes a value, apply to the parent node, the multiply that output to the weigth"""
