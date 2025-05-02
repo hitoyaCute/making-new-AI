@@ -17,8 +17,9 @@ class edge_layer:
     def __init__(self, edge_count:int):
         ...
 class construct:
-    def __init__(self, input_count, *netqork: ACTIVATION | node_layer | edge_layer):
-        ...
+    def __init__(self, input_count, *network: ACTIVATION | node_layer | edge_layer):
+        self.input = input_count
+        self.network = network
     def forward(self, input_val: list[float]):
         ...
     def loss(self, target: list[float], input_val:list[float])::
