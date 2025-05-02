@@ -12,9 +12,12 @@ class edge:
         return self.weigth * value
 class node_layer:
     def __init__(self, node_count:int):
-        ...
+        self.nodes = [node(0) for _ in range(node_count)]
+
 class edge_layer:
     def __init__(self, edge_count:int):
+        self.edges = [edge(1) for _ range(edge_count)]
+    def __call__(self, values: list[float]):
         ...
 class construct:
     def __init__(self, input_count, *network: ACTIVATION | node_layer | edge_layer):
