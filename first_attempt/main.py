@@ -13,7 +13,8 @@ class edge:
 class node_layer:
     def __init__(self, node_count:int):
         self.nodes = [node(0) for _ in range(node_count)]
-
+    def forward(self, edges: edge_layer):
+        ...
 class edge_layer:
     def __init__(self, edge_count:int):
         self.edges = [edge(1) for _ range(edge_count)]
