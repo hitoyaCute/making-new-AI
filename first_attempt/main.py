@@ -1,4 +1,6 @@
 import FUNC
+from exception import *
+
 
 class node:
     def __init__(self, bias):
@@ -13,7 +15,7 @@ class edge:
 class node_layer:
     def __init__(self, node_count:int):
         self.nodes = [node(0) for _ in range(node_count)]
-    def forward(self, edges: edge_layer):
+    def forward(self, edges: list[list[float]]):
         ...
 class edge_layer:
     def __init__(self, edge_count:int):
@@ -22,7 +24,7 @@ class edge_layer:
     def __call__(self, values: list[float]) -> list[list[float]]:
         val_len = len(values)
         if self.__len % val_len != 0:
-            raise ValueError("invalid value shape")
+            raise ShapeError("invalid value shape")
         
         sub_group = []
         output : list[list[float]] = []
